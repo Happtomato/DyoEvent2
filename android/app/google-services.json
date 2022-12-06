@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "152814192001",
+    "project_id": "dyoevents-b1aca",
+    "storage_bucket": "dyoevents-b1aca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152814192001:android:0dcad987b0be0a36d99480",
+        "android_client_info": {
+          "package_name": "ch.dyoevents.dierberger.dominik.dyoevents20"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152814192001-mbn2rclbeojkot4b8kvg18n2k6uc9nsg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl3p0rTboRZKgjMk6dLiVrCugic8ewwwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "152814192001-mbn2rclbeojkot4b8kvg18n2k6uc9nsg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "152814192001-92gk1ecqlen2tneqnp9br6f8o94u9jl9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ch.dyoevents.dierberger.dominik.dyoevents20"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
