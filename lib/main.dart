@@ -1,6 +1,7 @@
 import 'package:dyoevents20/AboutUs.dart';
 import 'package:dyoevents20/Events.dart';
 import 'package:dyoevents20/LoginWidget.dart';
+import 'package:dyoevents20/main.dart';
 import 'package:dyoevents20/SignOutWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
