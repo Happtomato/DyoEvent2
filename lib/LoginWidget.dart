@@ -1,6 +1,5 @@
+import 'package:dyoevents20/UserPageWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginWidget extends StatefulWidget {
@@ -15,7 +14,7 @@ class _loginWidgetState extends State<LoginWidget> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _auth = FirebaseAuth.instance;
-
+  String logInStatus = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,11 +52,41 @@ class _loginWidgetState extends State<LoginWidget> {
                     );
                   } on FirebaseAuthException catch (e) {
                     if (e.code == 'user-not-found') {
-                      print('No user found for that email.');
+                      logInStatus = 'No user found for that email.';
                     } else if (e.code == 'wrong-password') {
-                      print('Wrong password provided for that user.');
+                      logInStatus = 'Wrong password provided for that user.';
                     }
                   }
+                }
+                if(_auth.currentUser != null){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserPageWidget()),
+                  );
+                }
+                else{
+                  showDialog(
+                      context: context,
+                      builder: (_) => new AlertDialog(
+                        title: new Text(logInStatus),
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.all(
+                                Radius.circular(10.0))),
+                        content: Builder(
+                          builder: (context) {
+                            // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                            var height = MediaQuery.of(context).size.height;
+                            var width = MediaQuery.of(context).size.width;
+
+                            return Container(
+                              height: height - 400,
+                              width: width - 400,
+                            );
+                          },
+                        ),
+                      )
+                  );
                 }
               },
               child: const Text('Submit'),

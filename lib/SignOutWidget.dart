@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:dyoevents20/main.dart';
 
 class SignOutWidget extends StatefulWidget {
   const SignOutWidget({super.key});
@@ -27,17 +28,20 @@ class _signOutWidgetState extends State<SignOutWidget> {
               onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   try {
-                    await _auth.createUserWithEmailAndPassword(
-                      email: _emailController.text,
-                      password: _passwordController.text,
-                    );
-                  } //TODO: error abfangen
+                    await _auth.signOut();
+                  }
                   catch (e) {
                     print(e);
                   }
                 }
+                if(_auth.currentUser == null) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyApp()),
+                    );
+                  };
               },
-              child: const Text('Sign Out'),
+              child: const Text('Confirm Sign Out'),
             ),
           ],
         ),
