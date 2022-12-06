@@ -2,7 +2,6 @@ import 'package:dyoevents20/AboutUs.dart';
 import 'package:dyoevents20/Events.dart';
 import 'package:dyoevents20/LoginWidget.dart';
 import 'package:dyoevents20/SignOutWidget.dart';
-import 'package:dyoevents20/SignUpWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -26,7 +25,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Dyoevents',
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromRGBO(32, 30, 28, 100),
         fontFamily: 'Roboto',
       ),
       home: const MyHomePage(title: 'Dyoevents'),
@@ -46,7 +44,7 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: const <Widget>[
             Text("Hello World"),
           ],
         ),
