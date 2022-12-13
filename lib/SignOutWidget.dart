@@ -20,30 +20,35 @@ class _signOutWidgetState extends State<SignOutWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () async {
-                if (_formKey.currentState!.validate()) {
-                  try {
-                    await _auth.signOut();
-                  }
-                  catch (e) {
-                    print(e);
-                  }
-                }
-                if(_auth.currentUser == null) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MyApp()),
-                    );
-                  };
-              },
-              child: const Text('Confirm Sign Out'),
+      body: Container(
+        margin: const EdgeInsets.only(top: 300.0),
+        child: Center(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      try {
+                        await _auth.signOut();
+                      }
+                      catch (e) {
+                        print(e);
+                      }
+                    }
+                    if(_auth.currentUser == null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MyApp()),
+                        );
+                      };
+                  },
+                  child: const Text('Confirm Sign Out'),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

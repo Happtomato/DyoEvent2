@@ -1,5 +1,5 @@
 import 'package:dyoevents20/AboutUs.dart';
-import 'package:dyoevents20/Events.dart';
+import 'package:dyoevents20/Gallery.dart';
 import 'package:dyoevents20/LoginWidget.dart';
 import 'package:dyoevents20/main.dart';
 import 'package:dyoevents20/UserPageWidget.dart';
@@ -26,78 +26,87 @@ class _loginWidgetState extends State<LoginWidget> {
     return Scaffold(
       body: Form(
         key: _formKey,
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              controller: _emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-                return null;
-              },
-            ),
-            TextFormField(
-              controller: _passwordController,
-              decoration: const InputDecoration(labelText: 'Password'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-                return null;
-              },
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                if (_formKey.currentState!.validate()) {
-                  try {
-                    await _auth.signInWithEmailAndPassword(
-                      email: _emailController.text,
-                      password: _passwordController.text,
-                    );
-                  } on FirebaseAuthException catch (e) {
-                    if (e.code == 'user-not-found') {
-                      logInStatus = 'No user found for that email.';
-                    } else if (e.code == 'wrong-password') {
-                      logInStatus = 'Wrong password provided for that user.';
+        child: Container(
+          margin: const EdgeInsets.only(top: 300.0),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(labelText: 'Email'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
                     }
-                  }
-                }
-                if(_auth.currentUser != null){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => UserPageWidget()),
-                  );
-                }
-                else{
-                  showDialog(
-                      context: context,
-                      builder: (_) => new AlertDialog(
-                        title: new Text(logInStatus),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.all(
-                                Radius.circular(10.0))),
-                        content: Builder(
-                          builder: (context) {
-                            // Get available height and width of the build area of this widget. Make a choice depending on the size.
-                            var height = MediaQuery.of(context).size.height;
-                            var width = MediaQuery.of(context).size.width;
+                    return null;
+                  },
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 20.0),
+                  child: TextFormField(
+                    controller: _passwordController,
+                    decoration: const InputDecoration(labelText: 'Password'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 20.0),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        try {
+                          await _auth.signInWithEmailAndPassword(
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                          );
+                        } on FirebaseAuthException catch (e) {
+                          logInStatus = e.message!;
+                        }
+                      }
+                      if(_auth.currentUser != null){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => UserPageWidget()),
+                        );
+                      }
+                      //dialog box
+                      else{
+                        showDialog(
+                            context: context,
+                            builder: (_) => new AlertDialog(
+                              title: new Text(logInStatus),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.all(
+                                      Radius.circular(10.0))),
+                              content: Builder(
+                                builder: (context) {
+                                  // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                                  var height = MediaQuery.of(context).size.height;
+                                  var width = MediaQuery.of(context).size.width;
 
-                            return Container(
-                              height: height - 400,
-                              width: width - 400,
-                            );
-                          },
-                        ),
-                      )
-                  );
-                }
-              },
-              child: const Text('Submit'),
+                                  return Container(
+                                    height: height - 400,
+                                    width: width - 400,
+                                  );
+                                },
+                              ),
+                            )
+                        );
+                      }
+                    },
+                    child: const Text('Submit'),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
       bottomNavigationBar: Container(
@@ -149,13 +158,13 @@ class _loginWidgetState extends State<LoginWidget> {
                   },
                 ),
                 GButton(
-                  icon: LineIcons.alternateTicket,
+                  icon: LineIcons.photoVideo,
                   text: 'Events',
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Events()),
+                          builder: (context) => const Gallery()),
                     );
                   },
                 ),

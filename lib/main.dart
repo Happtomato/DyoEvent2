@@ -1,5 +1,5 @@
 import 'package:dyoevents20/AboutUs.dart';
-import 'package:dyoevents20/Events.dart';
+import 'package:dyoevents20/Gallery.dart';
 import 'package:dyoevents20/LoginWidget.dart';
 import 'package:dyoevents20/main.dart';
 import 'package:dyoevents20/SignOutWidget.dart';
@@ -9,6 +9,7 @@ import 'firebase_options.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:dyoevents20/dbController.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'Dyoevents',
       theme: ThemeData(
         fontFamily: 'Roboto',
@@ -37,19 +39,19 @@ class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text("Hello World"),
-          ],
+      body: Container(
+        margin: const EdgeInsets.only(top: 100.0),
+        child: const Padding(
+          padding: EdgeInsets.all(8.0),
+
+          child: Image(image: AssetImage("assets/images/logo.png")),
         ),
       ),
+
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -74,7 +76,6 @@ class MyHomePage extends StatelessWidget {
               duration: Duration(milliseconds: 400),
               tabBackgroundColor: Colors.grey[100]!,
               color: Colors.black,
-              backgroundColor: Colors.grey,
               tabs: [
                 GButton(
                   icon: LineIcons.home,
@@ -99,13 +100,13 @@ class MyHomePage extends StatelessWidget {
                   },
                 ),
                 GButton(
-                  icon: LineIcons.alternateTicket,
+                  icon: LineIcons.photoVideo,
                   text: 'Events',
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Events()),
+                          builder: (context) => const Gallery()),
                     );
                   },
                 ),
@@ -114,7 +115,8 @@ class MyHomePage extends StatelessWidget {
                   text: 'Profile',
                   onPressed: () {
                     Navigator.push(
-                      context,
+
+                    context,
                       MaterialPageRoute(
                           builder: (context) => const LoginWidget()),
                     );

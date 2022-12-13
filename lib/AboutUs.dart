@@ -1,5 +1,5 @@
 import 'package:dyoevents20/AboutUs.dart';
-import 'package:dyoevents20/Events.dart';
+import 'package:dyoevents20/Gallery.dart';
 import 'package:dyoevents20/LoginWidget.dart';
 import 'package:dyoevents20/main.dart';
 import 'package:flutter/material.dart';
@@ -10,24 +10,30 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 class AboutUs extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _auth = FirebaseAuth.instance;
-
   AboutUs({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-
+      body: Container(
+        child: Row(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(top: 100.0),
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                    child: Text(
+                  'About Us',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
-      ),
+        ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -48,8 +54,8 @@ class AboutUs extends StatelessWidget {
               gap: 8,
               activeColor: Colors.black,
               iconSize: 24,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              duration: Duration(milliseconds: 400),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: const Duration(milliseconds: 400),
               tabBackgroundColor: Colors.grey[100]!,
               color: Colors.black,
               backgroundColor: Colors.grey,
@@ -77,13 +83,13 @@ class AboutUs extends StatelessWidget {
                   },
                 ),
                 GButton(
-                  icon: LineIcons.alternateTicket,
+                  icon: LineIcons.photoVideo,
                   text: 'Events',
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Events()),
+                          builder: (context) => const Gallery()),
                     );
                   },
                 ),

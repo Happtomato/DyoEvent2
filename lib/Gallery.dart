@@ -1,32 +1,24 @@
 import 'package:dyoevents20/AboutUs.dart';
-import 'package:dyoevents20/Events.dart';
 import 'package:dyoevents20/LoginWidget.dart';
 import 'package:dyoevents20/main.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
-class Events extends StatefulWidget {
-  const Events({super.key});
+class Gallery extends StatefulWidget {
+  const Gallery({super.key});
 
   @override
-  _eventState createState() => _eventState();
+  _galleryState createState() => _galleryState();
 }
 
-class _eventState extends State<Events> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _auth = FirebaseAuth.instance;
+class _galleryState extends State<Gallery> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Form(
-        key: _formKey,
+      body: Container(
         child: Column(
           children: <Widget>[
 
@@ -82,13 +74,13 @@ class _eventState extends State<Events> {
                   },
                 ),
                 GButton(
-                  icon: LineIcons.alternateTicket,
+                  icon: LineIcons.photoVideo,
                   text: 'Events',
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Events()),
+                          builder: (context) => const Gallery()),
                     );
                   },
                 ),
@@ -109,5 +101,11 @@ class _eventState extends State<Events> {
         ),
       ),
     );
+  }
+}
+
+class StorageService {
+  static Future<String> getDownloadURL(String path) async {
+    return await FirebaseStorage.instance.ref(path).getDownloadURL();
   }
 }

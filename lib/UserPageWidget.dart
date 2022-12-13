@@ -1,6 +1,6 @@
 import 'package:dyoevents20/SignOutWidget.dart';
 import 'package:dyoevents20/AboutUs.dart';
-import 'package:dyoevents20/Events.dart';
+import 'package:dyoevents20/Gallery.dart';
 import 'package:dyoevents20/LoginWidget.dart';
 import 'package:dyoevents20/main.dart';
 import 'package:flutter/material.dart';
@@ -25,19 +25,22 @@ class _userPageWidgetState extends State<UserPageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          children: [
-            Text('User Page'),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignOutWidget()),
-                );
-              },
-              child: const Text('Sign Out'),
-            ),
-          ],
+        child: Container(
+          margin: const EdgeInsets.only(top: 300.0),
+          child: Column(
+            children: [
+              Text('User Page'),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignOutWidget()),
+                  );
+                },
+                child: const Text('Sign Out'),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Container(
@@ -89,13 +92,13 @@ class _userPageWidgetState extends State<UserPageWidget> {
                   },
                 ),
                 GButton(
-                  icon: LineIcons.alternateTicket,
+                  icon: LineIcons.photoVideo,
                   text: 'Events',
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Events()),
+                          builder: (context) => const Gallery()),
                     );
                   },
                 ),
