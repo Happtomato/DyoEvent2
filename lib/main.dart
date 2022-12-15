@@ -1,20 +1,16 @@
 import 'package:dyoevents20/AboutUs.dart';
 import 'package:dyoevents20/Gallery.dart';
 import 'package:dyoevents20/LoginWidget.dart';
-import 'package:dyoevents20/main.dart';
-import 'package:dyoevents20/SignOutWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:dyoevents20/dbController.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -42,13 +38,20 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Container(
-        margin: const EdgeInsets.only(top: 100.0),
-        child: const Padding(
-          padding: EdgeInsets.all(8.0),
-
-          child: Image(image: AssetImage("assets/images/logo.png")),
+        margin: const EdgeInsets.only(top: 300.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Card(
+            child: Column(
+              children: [
+                Image.asset('assets/images/logo.png'),
+                const SizedBox(
+                    child: Text('In einem Team von drei Leuten organisieren wir seit Januar 2022 Events in Clubs und Waldhäusern. Angefangen hat es im Waldhaus Staufen mit ungefähr 30 Teilnehmern. Inzwischen sind wir bereits 80 und haben zuletzt im Flösserplatz Aarau gefeiert. Wir freuen uns, in Zukunft weitere Partys an den verschiedensten Orten zu schmeissen.')
+                )
+              ],
+            ),
+          ),
         ),
       ),
 
@@ -72,8 +75,8 @@ class MyHomePage extends StatelessWidget {
               gap: 8,
               activeColor: Colors.black,
               iconSize: 24,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              duration: Duration(milliseconds: 400),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: const Duration(milliseconds: 400),
               tabBackgroundColor: Colors.grey[100]!,
               color: Colors.black,
               tabs: [

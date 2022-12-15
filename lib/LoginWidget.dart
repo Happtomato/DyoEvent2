@@ -1,6 +1,5 @@
 import 'package:dyoevents20/AboutUs.dart';
 import 'package:dyoevents20/Gallery.dart';
-import 'package:dyoevents20/LoginWidget.dart';
 import 'package:dyoevents20/main.dart';
 import 'package:dyoevents20/UserPageWidget.dart';
 import 'package:flutter/material.dart';
@@ -79,9 +78,9 @@ class _loginWidgetState extends State<LoginWidget> {
                       else{
                         showDialog(
                             context: context,
-                            builder: (_) => new AlertDialog(
-                              title: new Text(logInStatus),
-                              shape: RoundedRectangleBorder(
+                            builder: (_) => AlertDialog(
+                              title: Text(logInStatus),
+                              shape: const RoundedRectangleBorder(
                                   borderRadius:
                                   BorderRadius.all(
                                       Radius.circular(10.0))),
@@ -91,7 +90,7 @@ class _loginWidgetState extends State<LoginWidget> {
                                   var height = MediaQuery.of(context).size.height;
                                   var width = MediaQuery.of(context).size.width;
 
-                                  return Container(
+                                  return SizedBox(
                                     height: height - 400,
                                     width: width - 400,
                                   );
