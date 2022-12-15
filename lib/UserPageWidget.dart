@@ -1,15 +1,13 @@
-import 'package:dyoevents20/SignOutWidget.dart';
+import 'dart:io';
 import 'package:dyoevents20/AboutUs.dart';
 import 'package:dyoevents20/Gallery.dart';
 import 'package:dyoevents20/LoginWidget.dart';
 import 'package:dyoevents20/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserPageWidget extends StatefulWidget {
   const UserPageWidget({super.key});
@@ -19,32 +17,52 @@ class UserPageWidget extends StatefulWidget {
 }
 
 class _userPageWidgetState extends State<UserPageWidget> {
-  final _formKey = GlobalKey<FormState>();
 
+  late File _image;
+  late String _uploadedImageUrl;
+
+  Future getImage() async {
+    ImagePicker imagePicker = ImagePicker();
+    var image = await imagePicker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _image = image as File;
+    });
+
+    uploadImage();
+  }
+
+  Future uploadImage() async {
+    Reference storageReference = FirebaseStorage.instance
+        .ref()
+        .child('images/${DateTime.now().toString()}');
+    UploadTask uploadTask = storageReference.putFile(_image);
+    await uploadTask.whenComplete(() => null);
+    print('Image Uploaded');
+    storageReference.getDownloadURL().then((fileURL) {
+      setState(() {
+        _uploadedImageUrl = fileURL;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.only(top: 300.0),
-          child: Column(
-            children: [
-              Text('User Page'),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignOutWidget()),
-                  );
-                },
-                child: const Text('Sign Out'),
-              ),
-            ],
-          ),
-        ),
+      appBar: AppBar(
+        title: const Text("Upload Image"),
       ),
-      bottomNavigationBar: Container(
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          FloatingActionButton(
+            onPressed: getImage,
+            tooltip: 'Pick Image',
+            child: const Icon(Icons.add_photo_alternate),
+          ),
+        ],
+      ),
+    bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -122,3 +140,10 @@ class _userPageWidgetState extends State<UserPageWidget> {
     );
   }
 }
+
+
+
+
+
+
+

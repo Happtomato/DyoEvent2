@@ -6,6 +6,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+
 class Gallery extends StatefulWidget {
   const Gallery({super.key});
 
@@ -15,15 +16,42 @@ class Gallery extends StatefulWidget {
 
 class _galleryState extends State<Gallery> {
 
+  List<Image> _images = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadImages();
+  }
+
+  void loadImages() async {
+    // Access the Firebase storage
+    var storage = FirebaseStorage.instance;
+    // Get a reference to the folder where your pictures are stored
+    var ref = storage.ref().child('/PartyPictures');
+    // Get the list of files in the folder
+    var files = await ref.listAll();
+    // Loop through the files and download each one
+    for (var file in files.items) {
+      print(file.name);
+      var downloadUrl = await file.getDownloadURL();
+      // Use the download URL to create an Image widget
+      var image = Image.network(downloadUrl);
+      // Add the image to the list of images
+        _images.add(image);
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: <Widget>[
-
-          ],
-        ),
+      appBar: AppBar(
+        title: const Text('Gallery'),
+      ),
+      body: GridView.count(
+        crossAxisCount: 3,
+        children: _images,
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
