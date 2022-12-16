@@ -6,12 +6,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:http/http.dart' as http;
+
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -38,6 +41,12 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurpleAccent,
+        title: Image.asset('assets/images/logo.png', height:100, width:100, fit: BoxFit.fitWidth),
+
+
+      ),
       body: Container(
         margin: const EdgeInsets.only(top: 300.0),
         child: Padding(
@@ -45,9 +54,12 @@ class MyHomePage extends StatelessWidget {
           child: Card(
             child: Column(
               children: [
-                Image.asset('assets/images/logo.png'),
+
                 const SizedBox(
-                    child: Text('In einem Team von drei Leuten organisieren wir seit Januar 2022 Events in Clubs und Waldhäusern. Angefangen hat es im Waldhaus Staufen mit ungefähr 30 Teilnehmern. Inzwischen sind wir bereits 80 und haben zuletzt im Flösserplatz Aarau gefeiert. Wir freuen uns, in Zukunft weitere Partys an den verschiedensten Orten zu schmeissen.')
+                    child: Text('In einem Team von drei Leuten organisieren wir seit Januar 2022 Events in Clubs und Waldhäusern. '
+                        'Angefangen hat es im Waldhaus Staufen mit ungefähr 30 Teilnehmern.'
+                        'Inzwischen sind wir bereits 80 und haben zuletzt im Flösserplatz Aarau gefeiert. '
+                        'Wir freuen uns, in Zukunft weitere Partys an den verschiedensten Orten zu schmeissen.')
                 )
               ],
             ),
@@ -57,7 +69,7 @@ class MyHomePage extends StatelessWidget {
 
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.deepPurpleAccent,
           boxShadow: [
             BoxShadow(
               blurRadius: 20,
@@ -77,7 +89,7 @@ class MyHomePage extends StatelessWidget {
               iconSize: 24,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               duration: const Duration(milliseconds: 400),
-              tabBackgroundColor: Colors.grey[100]!,
+              tabBackgroundColor: Colors.deepPurple!,
               color: Colors.black,
               tabs: [
                 GButton(
