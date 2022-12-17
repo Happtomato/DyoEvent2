@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       title: 'Dyoevents',
       theme: ThemeData(
         fontFamily: 'Roboto',
+        backgroundColor: Colors.deepPurpleAccent,
       ),
       home: const MyHomePage(title: 'Dyoevents'),
     );
@@ -53,15 +54,7 @@ class MyHomePage extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Card(
             child: Column(
-              children: [
 
-                const SizedBox(
-                    child: Text('In einem Team von drei Leuten organisieren wir seit Januar 2022 Events in Clubs und Waldhäusern. '
-                        'Angefangen hat es im Waldhaus Staufen mit ungefähr 30 Teilnehmern.'
-                        'Inzwischen sind wir bereits 80 und haben zuletzt im Flösserplatz Aarau gefeiert. '
-                        'Wir freuen uns, in Zukunft weitere Partys an den verschiedensten Orten zu schmeissen.')
-                )
-              ],
             ),
           ),
         ),
