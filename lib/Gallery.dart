@@ -58,7 +58,7 @@ class _GalleryState extends State<Gallery> {
         children: _images,
       ),
       bottomNavigationBar: Container(
-<<<<<<< HEAD
+
         decoration: BoxDecoration(
           color: Colors.deepPurpleAccent,
           boxShadow: [
@@ -67,12 +67,8 @@ class _GalleryState extends State<Gallery> {
               color: Colors.black.withOpacity(.1),
             )
           ],
-=======
-        decoration: const BoxDecoration(
-          color: Colors.white,
-
->>>>>>> 747bde36fa86507c4c216a7b9d4bc48f94c6ad45
         ),
+
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
@@ -84,13 +80,11 @@ class _GalleryState extends State<Gallery> {
               iconSize: 24,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               duration: const Duration(milliseconds: 400),
-<<<<<<< HEAD
 
-=======
-              tabBackgroundColor: Colors.grey[100]!,
+              tabBackgroundColor: Colors.purple[100]!,
               color: Colors.black,
-              backgroundColor: Colors.white,
->>>>>>> 747bde36fa86507c4c216a7b9d4bc48f94c6ad45
+              backgroundColor: Colors.deepPurpleAccent,
+
               tabs: [
                 GButton(
                   icon: LineIcons.home,
