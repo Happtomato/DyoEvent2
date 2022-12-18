@@ -11,12 +11,12 @@ class Gallery extends StatefulWidget {
   const Gallery({super.key});
 
   @override
-  _galleryState createState() => _galleryState();
+  _GalleryState createState() => _GalleryState();
 }
 
-class _galleryState extends State<Gallery> {
+class _GalleryState extends State<Gallery> {
 
-  List<Image> _images = [];
+  final List<Image> _images = [];
 
   @override
   void initState() {
@@ -33,7 +33,6 @@ class _galleryState extends State<Gallery> {
     var files = await ref.listAll();
     // Loop through the files and download each one
     for (var file in files.items) {
-      print(file.name);
       var downloadUrl = await file.getDownloadURL();
       // Use the download URL to create an Image widget
       var image = Image.network(downloadUrl);
@@ -55,10 +54,11 @@ class _galleryState extends State<Gallery> {
 
       ),
       body: GridView.count(
-        crossAxisCount: 3,
+        crossAxisCount: 1,
         children: _images,
       ),
       bottomNavigationBar: Container(
+<<<<<<< HEAD
         decoration: BoxDecoration(
           color: Colors.deepPurpleAccent,
           boxShadow: [
@@ -67,9 +67,13 @@ class _galleryState extends State<Gallery> {
               color: Colors.black.withOpacity(.1),
             )
           ],
+=======
+        decoration: const BoxDecoration(
+          color: Colors.white,
+
+>>>>>>> 747bde36fa86507c4c216a7b9d4bc48f94c6ad45
         ),
         child: SafeArea(
-
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: GNav(
@@ -80,7 +84,13 @@ class _galleryState extends State<Gallery> {
               iconSize: 24,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               duration: const Duration(milliseconds: 400),
+<<<<<<< HEAD
 
+=======
+              tabBackgroundColor: Colors.grey[100]!,
+              color: Colors.black,
+              backgroundColor: Colors.white,
+>>>>>>> 747bde36fa86507c4c216a7b9d4bc48f94c6ad45
               tabs: [
                 GButton(
                   icon: LineIcons.home,
