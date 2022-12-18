@@ -17,6 +17,7 @@ class _AboutUsPageState extends State<AboutUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.deepPurpleAccent,
         title: Image.asset('assets/images/logo.png', height:100, width:100, fit: BoxFit.fitWidth),
 
