@@ -124,7 +124,7 @@ class _AboutUsPageState extends State<AboutUs> {
     icon: LineIcons.photoVideo,
     text: 'Gallery',
     active: true,
-    backgroundColor: Colors.deepPurple!,
+    backgroundColor: Colors.deepPurple,
     textColor: Colors.black,
     onPressed: () {
     Navigator.push(
