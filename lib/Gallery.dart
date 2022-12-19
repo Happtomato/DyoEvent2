@@ -46,17 +46,29 @@ class _GalleryState extends State<Gallery> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Gallery'),
+        automaticallyImplyLeading: false,
+          backgroundColor: Colors.deepPurpleAccent,
+          title: Image.asset('assets/images/logo.png', height:100, width:100, fit: BoxFit.fitWidth),
+
+
+
       ),
       body: GridView.count(
         crossAxisCount: 1,
         children: _images,
       ),
       bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
 
+        decoration: BoxDecoration(
+          color: Colors.deepPurpleAccent,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 20,
+              color: Colors.black.withOpacity(.1),
+            )
+          ],
         ),
+
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
@@ -68,13 +80,16 @@ class _GalleryState extends State<Gallery> {
               iconSize: 24,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               duration: const Duration(milliseconds: 400),
-              tabBackgroundColor: Colors.grey[100]!,
+
+              tabBackgroundColor: Colors.purple[100]!,
               color: Colors.black,
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.deepPurpleAccent,
+
               tabs: [
                 GButton(
                   icon: LineIcons.home,
                   text: 'Home',
+                  active: false,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -86,6 +101,7 @@ class _GalleryState extends State<Gallery> {
                 GButton(
                   icon: LineIcons.infoCircle,
                   text: 'About Us',
+                  active: false,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -96,7 +112,10 @@ class _GalleryState extends State<Gallery> {
                 ),
                 GButton(
                   icon: LineIcons.photoVideo,
-                  text: 'Events',
+                  text: 'Gallery',
+                  active: true,
+                  backgroundColor: Colors.deepPurple!,
+                  textColor: Colors.black,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -110,6 +129,7 @@ class _GalleryState extends State<Gallery> {
                   text: 'Profile',
                   onPressed: () {
                     Navigator.push(
+
                       context,
                       MaterialPageRoute(
                           builder: (context) => const LoginWidget()),

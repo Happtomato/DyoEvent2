@@ -23,6 +23,13 @@ class _loginWidgetState extends State<LoginWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.deepPurpleAccent,
+        title: Image.asset('assets/images/logo.png', height:100, width:100, fit: BoxFit.fitWidth),
+
+
+      ),
       body: Form(
         key: _formKey,
         child: Container(
@@ -57,6 +64,7 @@ class _loginWidgetState extends State<LoginWidget> {
                 Container(
                   margin: const EdgeInsets.only(top: 20.0),
                   child: ElevatedButton(
+
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         try {
@@ -101,6 +109,10 @@ class _loginWidgetState extends State<LoginWidget> {
                       }
                     },
                     child: const Text('Submit'),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.deepPurpleAccent,
+                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                        ),
                   ),
                 ),
               ],
@@ -110,7 +122,7 @@ class _loginWidgetState extends State<LoginWidget> {
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.deepPurpleAccent,
           boxShadow: [
             BoxShadow(
               blurRadius: 20,
@@ -128,15 +140,14 @@ class _loginWidgetState extends State<LoginWidget> {
               gap: 8,
               activeColor: Colors.black,
               iconSize: 24,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              duration: Duration(milliseconds: 400),
-              tabBackgroundColor: Colors.grey[100]!,
-              color: Colors.black,
-              backgroundColor: Colors.grey,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: const Duration(milliseconds: 400),
+
               tabs: [
                 GButton(
+
                   icon: LineIcons.home,
-                  text: 'Home',
+
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -147,18 +158,21 @@ class _loginWidgetState extends State<LoginWidget> {
                 ),
                 GButton(
                   icon: LineIcons.infoCircle,
-                  text: 'About Us',
+
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AboutUs()),
+                          builder: (context) =>  AboutUs()),
+
                     );
                   },
                 ),
                 GButton(
                   icon: LineIcons.photoVideo,
-                  text: 'Events',
+
+                  backgroundColor: Colors.deepPurple!,
+                  textColor: Colors.black,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -172,6 +186,7 @@ class _loginWidgetState extends State<LoginWidget> {
                   text: 'Profile',
                   onPressed: () {
                     Navigator.push(
+
                       context,
                       MaterialPageRoute(
                           builder: (context) => const LoginWidget()),
